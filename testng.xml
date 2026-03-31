@@ -1,7 +1,8 @@
 <suite name = "OrangeHRM Suit" >
-<test name = "Login test">
+<test name = "Add Employee Test">
+
 <classes >
-<class name = "tests.LoginTest"/>
+<class name = "tests.AddEmployeeTest"/>
 </classes>
 </test>
 </suite>

@@ -1,0 +1,20 @@
+# Test output
+/test-output/
+
+# Logs
+/logs/
+
+# Extent reports
+*.html
+
+# Maven target folder
+/target/
+
+# Eclipse files
+.project
+.classpath
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db

@@ -1,14 +1,20 @@
+
 package pages;
 
 import java.time.Duration;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LoginPage {
+import base.BaseTest;
+
+public class LoginPage  {
 	
+    private static final Logger log = LogManager.getLogger(LoginPage.class);
 	WebDriver driver;
 	WebDriverWait wait;
 	
@@ -17,6 +23,9 @@ public class LoginPage {
 	
 	By loginBtn = By.xpath("//button[@type='submit']");
 	
+	By Dashboard = By.xpath("//h6[text()='Dashboard']");
+	By Profileicon = By.xpath("//img[@class='oxd-userdropdown-img']");
+	
 	
 	public LoginPage(WebDriver driver)
 	{
@@ -24,20 +33,56 @@ public class LoginPage {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	}
 	
-	public void Login(String user, String pass)
+	public void enterusername(String user)
 	{
-	System.out.println("waiting for username ");
-	
+        log.info("Entering username: " + user);
+
 		wait.until(ExpectedConditions.visibilityOfElementLocated(username)).sendKeys(user);
-		System.out.println("Entering username");
+	}
+	
+	public void enterpassword(String pass)
+	{
 		
-		System.out.println("waiting for password");
-		System.out.println("Entering password");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(password)).sendKeys(pass);
+        log.info("Entering password");
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(password)).sendKeys(pass);
+	}
+	
+	public void clicklogin()
+	{
+        log.info("Clicking login button");
+
+		
 		wait.until(ExpectedConditions.elementToBeClickable(loginBtn)).click();
-		//driver.findElement(username).sendKeys(user);
-		//driver.findElement(password).sendKeys(pass);
-		//driver.findElement(loginBtn).click();
+	}
+		
+	public boolean isloginsuccesfull()
+	{
+        log.info("Checking if login is successful");
+
+		
+		try {
+			
+			boolean dashboardheader = wait.until(ExpectedConditions.visibilityOfElementLocated(Dashboard)).isDisplayed();
+			
+			boolean Profile = wait.until(ExpectedConditions.visibilityOfElementLocated(Profileicon)).isDisplayed();
+			
+			
+            log.info("Login success elements found");
+
+			return dashboardheader && Profile;
+			 
+		}
+		
+		catch(Exception e)
+		{
+            log.error("Login validation failed: " + e.getMessage());
+
+			return false;
+		}
+		
+		
+		
 		
 	}
 	
