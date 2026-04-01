@@ -1,109 +1,134 @@
-# OrangeHRM Automation Framework
------------------------------------------
-A scalable and maintainable **Selenium Test Automation Framework** for OrangeHRM using Java, TestNG, and Maven. Built following **Page Object Model (POM)** design pattern with data-driven testing and advanced reporting.
+## OrangeHRM Automation Framework (Enterprise-Ready)
+-------------------------------------------------
 
----
+A scalable, maintainable, and CI-ready Selenium automation framework built to test the OrangeHRM application. Designed using industry best practices to simulate real-world QA automation in enterprise environments.
 
-# Tech Stack
+## Project Status
 -----------------
 
-- **Language:** Java  
-- **Automation:** Selenium WebDriver  
-- **Test Framework:** TestNG  
-- **Build & Dependency Management:** Maven  
-- **Data Management:** Excel, JSON  
-- **Logging:** Log4j2  
-- **Reporting:** Extent Reports  
-- **Version Control:** Git & GitHub  
+This project is actively being enhanced with real-world features such as:
 
----
+CI/CD integration
+API automation
+Docker execution
+Parallel test execution
 
-# Project Structure
----------------------------
+## Business Use Case
+------------------------
 
-orangehrm-automation-framework/
-│
-├── src/
-│ ├── main/java # (Optional for utilities if needed)
-│ └── test/java # Test classes, page objects, utilities
-├── src/test/resources # Test data (Excel, JSON, log4j2.xml)
-├── .gitignore # Ignore logs, reports, target folder
-├── pom.xml # Maven dependencies
-├── config.properties # Browser and URL configuration
-└── README.md
+This framework automates critical HR workflows in OrangeHRM, including:
 
+User authentication and role-based access
+Employee management
+Admin functionalities
+Form validations and UI workflows
 
----
-
-# Key Features
---------------------
-
-- **Reusable Base Test Setup:** Handles browser setup and teardown  
-- **Page Object Model (POM):** Keeps locators and page actions separate for maintainability  
-- **Data-Driven Testing:** Supports Excel & JSON for flexible test data  
-- **Config Reader:** Easily manage environment, browser, and URL settings  
-- **Logging:** Tracks test execution with Log4j2  
-- **Reports:** Generate detailed HTML reports with Extent Reports  
-- **Maven:** Manage dependencies and run tests with `mvn test`  
-- **Git:** Version controlled for collaboration and continuous integration  
-
----
-
-# How to Run Tests
------------------------
-1. Clone the repository:
-
-</ bash>
-
-git clone https://github.com/abinayapradeep74/OrangeHRM-Automation.git
-
-2. Open in Eclipse or IntelliJ IDEA
-3. Install dependencies:
-
-</bash>
-mvn clean install
-
-4. Run tests:
-</bash>
-mvn test
-
-TestNG XML files are located under src/test/java/tests/
-
-
-Reports
------------
-1. Extent Reports are generated automatically in test-output/ExtentReport.html after each run
-2. Logging files are saved in the logs/ folder
-
-How to Contribute
------------------------
-1. Fork the repo
-2. Create your feature branch: git checkout -b feature/your-feature
-3. Commit your changes: git commit -m "Add some feature"
-4. Push to the branch: git push origin feature/your-feature
-5. Create a pull request
-
-✅ Best Practices Followed
----------------------------
-Clean repo with .gitignore to exclude logs, reports, target folder
-Modular design with POM and reusable utilities
-Data-driven approach for flexibility and scalability
-Version control with Git for professional workflow
-
-📌 Future Enhancements
---------------------------
-Parallel test execution (TestNG)
-Cross-browser testing with multiple drivers
-CI/CD integration (Jenkins / GitHub Actions)
-Screenshot on test failure
-
-🔗 GitHub Repository
---------------------
-OrangeHRM Automation Framework
-
-👨‍💻 Author
+Objective:
 ------------
+To reduce manual regression effort and improve release quality through reliable automation.
+
+## Highlights
+---------------
+Designed using Page Object Model (POM) for high maintainability
+Supports data-driven testing using Excel & JSON
+Integrated logging and reporting for debugging and traceability
+Built with scalability in mind (parallel execution ready)
+Easily extendable for CI/CD pipelines and cloud execution
+
+## Tech Stack
+----------------
+Language: Java
+UI Automation: Selenium WebDriver
+Test Framework: TestNG
+Build Tool: Maven
+Data Handling: Apache POI (Excel), JSON
+Logging: Log4j2
+Reporting: Extent Reports
+Version Control: Git (GitHub)
+🏗️ Framework Architecture
+
+The framework follows a Layered Test Architecture:
+
+Page Layer: Page Object classes (UI interactions)
+Test Layer: TestNG test cases
+Utility Layer: Reusable helper methods
+Config Layer: Environment & configuration management
+Designed For:
+Reusability
+Maintainability
+Scalability
+
+## Key Features
+----------------
+🔹 Centralized Base Test setup for browser lifecycle management
+🔹 Externalized configuration (browser, environment, URL)
+🔹 Reusable utilities for common actions
+🔹 Detailed HTML reporting using Extent Reports
+🔹 Structured logging using Log4j2
+🔹 Data-driven test execution
+
+##Test Coverage
+------------------
+Login functionality (valid & invalid scenarios)
+Employee management workflows
+Form validations and UI interactions
+
+Execution
+-------------
+Run the tests using Maven:
+
+mvn clean test
+
+## Reports & Logs
+------------------
+Extent Reports generated at:
+/test-output/ExtentReport.html
+
+## Logs available under:
+---------------------------
+/logs/
+
+## Real-World Impact
+----------------------
+Reduces manual testing effort through automation
+Improves regression test coverage
+Enables faster feedback with CI-ready execution
+Supports scalable and maintainable test design
+
+## Roadmap (Continuous Improvement)
+----------------------------------------
+
+Parallel execution using TestNG
+
+CI/CD integration using Jenkins / GitHub Actions
+
+Cross-browser testing (Chrome, Firefox, Edge)
+
+Docker-based execution
+
+API testing integration (RestAssured)
+
+Cloud execution (Selenium Grid / BrowserStack)
+
+Screenshot capture on test failure
+
+Retry mechanism for flaky tests
+
+##Contribution
+---------------
+Fork the repository
+Create your feature branch:
+git checkout -b feature/your-feature
+Commit your changes:
+git commit -m "Add new feature"
+Push to the branch:
+git push origin feature/your-feature
+Open a Pull Request
+
+##Author
+
 Abinaya Maruthamuthu
 
-Email: abinayapradeep74@gmail.com
-LinkedIn: https://www.linkedin.com/in/abinaya-maruthamuthu-754359272/
+abinayapradeep74@gmail.com
+
+🔗 LinkedIn: https://www.linkedin.com/in/abinaya-maruthamuthu-754359272/
