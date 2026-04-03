@@ -15,10 +15,11 @@ import com.aventstack.extentreports.ExtentTest;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import utilities.ConfigReader;
 import utilities.ExtentManager;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class BaseTest {
 	
-	public WebDriver driver;
+	/*public WebDriver driver;
 	ConfigReader config;
 	public static ExtentReports extent;
     public ExtentTest test;
@@ -42,11 +43,29 @@ public class BaseTest {
 		
 		if(broswer.equalsIgnoreCase("chrome"))
 		{
-			driver= new ChromeDriver();
+			
+			if (broswer.equalsIgnoreCase("chrome")) {
+			    WebDriverManager.chromedriver().setup(); // setup driver
+
+			    // Create ChromeOptions
+			    ChromeOptions options = new ChromeOptions();
+
+			    // Run headless if config says so
+			    if (config.isHeadless()) {
+			        options.addArguments("--headless=new");
+			        options.addArguments("--no-sandbox");
+			        options.addArguments("--disable-dev-shm-usage");
+			    }
+
+			    driver = new ChromeDriver(options);
+			}
+			
+			
+			
+			
 		}
 		
 		driver.manage().window().maximize();
-	//	driver.get("https://opensource-demo.orangehrmlive.com");
 		
 		
 		driver.get(config.getValue("url"));
@@ -72,3 +91,59 @@ public class BaseTest {
 	}
 
 }
+*/
+	
+	
+	
+    public WebDriver driver;
+    ConfigReader config;
+    public static ExtentReports extent;
+    public ExtentTest test;
+
+    public static Logger log = LogManager.getLogger(BaseTest.class);
+
+    @BeforeSuite
+    public void setupReport() {
+        extent = ExtentManager.getInstance();
+    }
+
+    @BeforeMethod
+    public void setUp() {
+        config = new ConfigReader();
+        String browser = config.getValue("browser"); // fixed typo
+
+        if (browser.equalsIgnoreCase("chrome")) {
+            WebDriverManager.chromedriver().setup();
+
+            ChromeOptions options = new ChromeOptions();
+
+            // Run headless if config says so
+            if (config.isHeadless()) {
+                options.addArguments("--headless=new");
+                options.addArguments("--no-sandbox");
+                options.addArguments("--disable-dev-shm-usage");
+            }
+
+            driver = new ChromeDriver(options);
+        }
+
+        driver.manage().window().maximize();
+        driver.get(config.getValue("url"));
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+
+    @AfterSuite
+    public void flushReport() {
+        if (extent != null) {
+            extent.flush();
+        }
+    }
+}
+
+	

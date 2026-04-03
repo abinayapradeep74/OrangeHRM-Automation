@@ -5,8 +5,9 @@ import java.util.Properties;
 
 public class ConfigReader {
 	
-	Properties prop;
+	private Properties prop;  // class-level variable
 
+    // Constructor: loads properties from file
     public ConfigReader() {
         try {
             FileInputStream fis = new FileInputStream("config.properties");
@@ -17,7 +18,18 @@ public class ConfigReader {
         }
     }
 
+    // Get value of any property
     public String getValue(String key) {
         return prop.getProperty(key);
     }
+
+    // Check if headless mode is enabled
+    public boolean isHeadless() {
+        String value = prop.getProperty("headless", "false"); // default false
+        return Boolean.parseBoolean(value);
+    }  
+	
+	
+	
+	
 }	
