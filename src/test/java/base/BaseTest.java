@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
@@ -15,6 +16,8 @@ import com.aventstack.extentreports.ExtentTest;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import utilities.ConfigReader;
 import utilities.ExtentManager;
+import utilities.Screenshot;
+
 import org.openqa.selenium.chrome.ChromeOptions;
 
 public class BaseTest {
@@ -59,7 +62,11 @@ public class BaseTest {
     }
 
     @AfterMethod
-    public void tearDown() {
+    public void tearDown(ITestResult result) {
+    	
+    	if (result.getStatus() == ITestResult.FAILURE) {
+            Screenshot.attachScreenshotToReport(driver, result.getName(), test);
+        }
         if (driver != null) {
             driver.quit();
         }

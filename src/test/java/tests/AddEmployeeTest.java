@@ -15,6 +15,7 @@ import pages.AddEmployeePage;
 import pages.LoginPage;
 import utilities.ConfigReader;
 import utilities.JsonReader;
+import utilities.Screenshot;
 
 public class AddEmployeeTest extends BaseTest {
 	
@@ -100,11 +101,14 @@ public class AddEmployeeTest extends BaseTest {
         //Assert.assertTrue(pim.isEmployeeAdded(fname,lname), "Employee not added!");        
         
         
-        Assert.assertTrue(pim.isEmployeeAdded(), "Employee not added!");
+        Screenshot.attachScreenshotToReport(driver, "AddedEmployee_" + fname, test);
+
+        
+       Assert.assertTrue(pim.isEmployeeAdded(), "Employee not added!");
 
         
 
-
+     //   Assert.assertTrue(false, "Intentional failure for screenshot test");
 
         log.info("Employee added successfully: " + fname + " " + lname);
         test.pass("Employee added successfully: " + fname + " " + lname);
