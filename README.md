@@ -1,3 +1,5 @@
+![CI](https://github.com/abinayapradeep74/OrangeHRM-Automation/actions/workflows/ci.yml/badge.svg)
+
 ## OrangeHRM Automation Framework (Enterprise-Ready)
 -------------------------------------------------
 
