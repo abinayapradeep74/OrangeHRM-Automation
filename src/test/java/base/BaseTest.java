@@ -41,18 +41,23 @@ public class BaseTest {
         config = new ConfigReader();
         String browser = config.getValue("browser"); // fixed typo
 
-        if (browser.equalsIgnoreCase("chrome")) {
+        if (browser.equalsIgnoreCase("chrome")) {	
             WebDriverManager.chromedriver().setup();
 
             ChromeOptions options = new ChromeOptions();
+            boolean headless = Boolean.parseBoolean(config.getValue("headless")); 
 
-         // Test commit to trigger GitHub Actions            
+            
+         // Test commit to trigger GitHub Actions  
+            
+            if (headless) {
+
                 options.addArguments("--headless=new");
                 options.addArguments("--no-sandbox");
                 options.addArguments("--disable-dev-shm-usage");
                 options.addArguments("--disable-gpu");
             
-
+            }
             driver = new ChromeDriver(options);
         }
 

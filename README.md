@@ -1,136 +1,138 @@
-![CI](https://github.com/abinayapradeep74/OrangeHRM-Automation/actions/workflows/ci.yml/badge.svg)
+# OrangeHRM Automation Framework
 
-## OrangeHRM Automation Framework (Enterprise-Ready)
--------------------------------------------------
+## About the Project
 
-A scalable, maintainable, and CI-ready Selenium automation framework built to test the OrangeHRM application. Designed using industry best practices to simulate real-world QA automation in enterprise environments.
+This project is a Selenium Java Automation Framework developed for automating key HR work flows in the OrangeHRM application using the Page Object Model (POM) design pattern.
 
-## Project Status
------------------
+The framework currently covers end-to-end Employee Management operations including Add, Search, Update, and Delete functionalities with reusable utilities, reporting, and CI/CD integration.
 
-This project is actively being enhanced with real-world features such as:
+---
 
-CI/CD integration
-API automation
-Docker execution
-Parallel test execution
+## Tech Stack Used
 
-## Business Use Case
-------------------------
+* Java
+* Selenium WebDriver
+* TestNG
+* Maven
+* Page Object Model (POM)
+* Extent Reports
+* JSON Data Handling
+* Git & GitHub
+* CI/CD Integration
 
-This framework automates critical HR workflows in OrangeHRM, including:
+---
 
-User authentication and role-based access
-Employee management
-Admin functionalities
-Form validations and UI workflows
+## Features Implemented
 
-Objective:
-------------
-To reduce manual regression effort and improve release quality through reliable automation.
+### Login Functionality
 
-## Highlights
----------------
-Designed using Page Object Model (POM) for high maintainability
-Supports data-driven testing using Excel & JSON
-Integrated logging and reporting for debugging and traceability
-Built with scalability in mind (parallel execution ready)
-Easily extendable for CI/CD pipelines and cloud execution
+* Valid login automation
+* Login validation using assertions
 
-## Tech Stack
-----------------
-Language: Java
-UI Automation: Selenium WebDriver
-Test Framework: TestNG
-Build Tool: Maven
-Data Handling: Apache POI (Excel), JSON
-Logging: Log4j2
-Reporting: Extent Reports
-Version Control: Git (GitHub)
-🏗️ Framework Architecture
+### Add Employee
 
-The framework follows a Layered Test Architecture:
+* Add new employee
+* Dynamic employee ID generation
+* Employee creation validation
 
-Page Layer: Page Object classes (UI interactions)
-Test Layer: TestNG test cases
-Utility Layer: Reusable helper methods
-Config Layer: Environment & configuration management
-Designed For:
-Reusability
-Maintainability
-Scalability
+### Search Employee
 
-## Key Features
-----------------
-🔹 Centralized Base Test setup for browser lifecycle management
-🔹 Externalized configuration (browser, environment, URL)
-🔹 Reusable utilities for common actions
-🔹 Detailed HTML reporting using Extent Reports
-🔹 Structured logging using Log4j2
-🔹 Data-driven test execution
+* Search employee using employee name
+* Auto-suggestion handling
+* Search result validation
 
-##Test Coverage
-------------------
-Login functionality (valid & invalid scenarios)
-Employee management workflows
-Form validations and UI interactions
+### Update Employee
 
-Execution
--------------
-Run the tests using Maven:
+* Navigate to Employee List
+* Search and open employee profile
+* Update employee details
+* Validate updated information
 
-mvn clean test
+### Delete Employee
 
-## Reports & Logs
-------------------
-Extent Reports generated at:
-/test-output/ExtentReport.html
+* Delete employee record
+* Handle confirmation popup
+* Validate deleted employee record
 
-## Logs available under:
----------------------------
-/logs/
+---
 
-## Real-World Impact
-----------------------
-Reduces manual testing effort through automation
-Improves regression test coverage
-Enables faster feedback with CI-ready execution
-Supports scalable and maintainable test design
+## Selenium Concepts Used
 
-## Roadmap (Continuous Improvement)
-----------------------------------------
+* Explicit Waits (WebDriverWait)
+* Dynamic XPath Handling
+* JavaScriptExecutor
 
-Parallel execution using TestNG
+  * Scroll Into View
+  * JavaScript Click
+* Dynamic Web Element Validation
+* Auto-Suggestion Handling
+* Exception Handling
 
-CI/CD integration using Jenkins / GitHub Actions
+---
 
-Cross-browser testing (Chrome, Firefox, Edge)
+## Utilities Implemented
 
-Docker-based execution
+* ConfigReader
+* JSON Reader
+* Screenshot Utility
+* BaseTest Setup
+* Extent Report Integration
 
-API testing integration (RestAssured)
+---
 
-Cloud execution (Selenium Grid / BrowserStack)
+## Reporting
 
-Screenshot capture on test failure
+Extent Reports are integrated for:
 
-Retry mechanism for flaky tests
+* Test execution status
+* Logs
+* Screenshots
+* Failure tracking
 
-##Contribution
----------------
-Fork the repository
-Create your feature branch:
-git checkout -b feature/your-feature
-Commit your changes:
-git commit -m "Add new feature"
-Push to the branch:
-git push origin feature/your-feature
-Open a Pull Request
+---
 
-##Author
+## CI/CD Integration
 
-Abinaya Maruthamuthu
+The framework is integrated with CI/CD process for automated test execution.
 
-abinayapradeep74@gmail.com
+---
 
-🔗 LinkedIn: https://www.linkedin.com/in/abinaya-maruthamuthu-754359272/
+## Project Structure
+
+src/test/java
+
+* pages
+* tests
+* utilities
+* base
+
+src/test/resources
+
+* config.properties
+* AddEmployee.json
+
+---
+
+## How to Run
+
+1. Clone the repository
+2. Open project in Eclipse or IntelliJ
+3. Install Maven dependencies
+4. Run TestNG XML file
+5. View Extent Reports after execution
+
+---
+
+## Future Enhancements
+
+* Cross-browser testing
+* Parallel execution
+* Retry Analyzer
+* API Automation
+* SQL Validation
+
+---
+
+## Author
+Automation Test Engineer
+Selenium | Java | TestNG | CI/CD

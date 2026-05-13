@@ -1,10 +1,6 @@
 package tests;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -19,13 +15,8 @@ import utilities.Screenshot;
 
 public class AddEmployeeTest extends BaseTest {
 	
-
-
-
-
-
-
-
+	String empID;
+	
 	@BeforeMethod
 	public void login() {
 	    ConfigReader config = new ConfigReader();
@@ -75,12 +66,7 @@ public class AddEmployeeTest extends BaseTest {
 	
     @Test(dataProvider = "empdata")
     public void addEmployeeTest(String fname, String lname) {
-    	
-    	
-
-    	
-    	
-
+    
         test = extent.createTest("Add Employee Test: " + fname);
 
         log.info("===== Starting Add Employee Test =====");
@@ -89,32 +75,114 @@ public class AddEmployeeTest extends BaseTest {
 
         // 📂 Step 2: Navigate to PIM
         AddEmployeePage pim = new AddEmployeePage(driver);
-        pim.ClickPim();
-        pim.ClickAddEmployee();
+        pim.clickPim();
+        pim.clickAddEmployee();
 
         // 🧾 Step 3: Add employee
         log.info("Entering employee details");
-        pim.EneterEmployeeDetails(fname, lname);
+        
+         empID = String.valueOf(System.currentTimeMillis()).substring(7);
 
-        pim.ClickSave();
-        
-        //Assert.assertTrue(pim.isEmployeeAdded(fname,lname), "Employee not added!");        
-        
+        pim.eneterEmployeeDetails(fname, lname, empID);
+
+        pim.clickSave();        
         
         Screenshot.attachScreenshotToReport(driver, "AddedEmployee_" + fname, test);
 
         
        Assert.assertTrue(pim.isEmployeeAdded(), "Employee not added!");
 
-        
-
-     //   Assert.assertTrue(false, "Intentional failure for screenshot test");
-
         log.info("Employee added successfully: " + fname + " " + lname);
         test.pass("Employee added successfully: " + fname + " " + lname);
 
         log.info("===== Test Finished =====");
     }
-	
+    
+   @Test(dataProvider = "empdata" ,dependsOnMethods="addEmployeeTest")
+	public void searchEmployeeTest(String Fname, String Lname)
+	{
+		test = extent.createTest("Search Employee:"+Fname);
+		log.info("===== Starting search Test =====");
+		
+	    AddEmployeePage pim = new AddEmployeePage(driver);
+
+		pim.clickPim();
+		pim.searchEmployee(Fname, Lname);
+		
+		// 🔹 Step 3: Validate result
+		
+		//Assert.assertTrue(pim.isEmployeeFoundById(empID), "Employee not found with Id" + empID);	           
+	    
+		Assert.assertTrue(
+			    pim.isSearchResultDisplayed(),
+			    "Search result not displayed"
+			);
+	    log.info("EmployeeId found successfully: " + empID);
+
+	    test.pass("Search successful for: " + Fname + " " + Lname);
+		
+		
+	}
+    
+    @Test(dependsOnMethods="addEmployeeTest")  
+   public void updateEmployeeTest()
+   {
+	   
+		test = extent.createTest("Update Employee Test:");
+		log.info("===== Starting Update Test =====");
+		
+	    AddEmployeePage pim = new AddEmployeePage(driver);
+
+		pim.clickPim();
+         
+		String oldFname ="Alice";
+		String oldLname ="Brown";
+		pim.searchEmployee(oldFname, oldLname);
+		
+		pim.clickEditIcon();
+		
+        String updatedName ="johnny";
+
+pim.updateEmployeeName(updatedName);
+
+
+	   Assert.assertTrue(pim.isEmployeeUpdated(updatedName),"Employee not updated");
+	   
+	   log.info("Employee updated Successfully");
+
+	    test.pass("Employee updated Successfully");
+	   
+	   
+	   
+	   
+	   
+	   
+   }
+    
+    
+    @Test(dependsOnMethods = "updateEmployeeTest")
+    public void deleteEmployeeTest()
+    {
+        test = extent.createTest("Delete Employee Test");
+
+        log.info("===== Starting Delete Test =====");
+
+        AddEmployeePage pim = new AddEmployeePage(driver);
+
+        pim.clickPim();
+
+        pim.searchEmployee("Johnny", "Brown");
+
+        pim.deleteEmployee();
+
+        Assert.assertTrue(
+            pim.isEmployeeDeleted(),
+            "Employee not deleted"
+        );
+
+        log.info("Employee deleted successfully");
+
+        test.pass("Employee deleted successfully");
+    }
 	
 }
